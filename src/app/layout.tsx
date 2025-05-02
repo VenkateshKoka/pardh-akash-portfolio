@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,9 +24,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          // Add a subtle gradient or image background for glassmorphism
+          "bg-gradient-to-br from-gray-900 via-purple-900 to-violet-600 dark:from-gray-900 dark:via-purple-950 dark:to-violet-800",
+          geistSans.variable,
+          geistMono.variable
+        )}
       >
         {children}
       </body>
